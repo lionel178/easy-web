@@ -20,6 +20,12 @@
 - [16. 哪些操作会造成内存泄露？](#16)
 - [17. 介绍一下防抖](#17)
 - [18. 介绍一下节流](#18)
+- [19. 了解 ES6 的 let 和 const 变量声明吗？跟 ES5 的 var 有哪些区别？](#19)
+- [20. 介绍 js 的基本数据类型](#20)
+- [21. JS 中获取原型的方法](#21)
+- [22. 如何判断一个对象是否属于某个类？](#22)
+- [23. 什么是堆？什么是栈？他们之间有什么区别和联系](#23)
+- [24. 介绍 instanceof 原理，并手动实现](#24)
 
 ## 题解
 
@@ -352,5 +358,99 @@ function throttle(fn, wait, immediate) {
       }, wait);
     }
   };
+}
+```
+
+<br/>
+<br/>
+
+#### <a href="#19" id="19">19. 了解 ES6 的 let 和 const 变量声明吗？跟 ES5 的 var 有哪些区别？</a>
+
+##### let
+
+- 在同一个作用域里面： `var` 可以重复声明变量， **`let` 不能重复声明同一变量**。 `ES5` 是函数作用域，即一个函数里面才是一个作用域。 `ES6` 是块级作用域，花括号里面就是一个作用域。
+
+- `var` 有变量提升，可以在变量声明前使用， **`let` 不存在变量提升，在变量之前使用会报错**。
+
+- **`let` 有暂时性死区**，即父作用域中有 `var` 定义，在块作用域里又定义了 `let`， 那再在 `let` 之前使用，就是死区
+
+##### const
+
+- `const` 的很多特性和 `let` 一样，都有：不可重复声明，不存在变量提升，有暂时性死区，都是块级作用域
+
+- 和 `let` 不同的是： `const` 必须在声明的时候赋值； `cosnt` 声明的变量不能更改（值引用是完全不能更改，引用类型， `const` 只能保证指针是固定的）
+
+<br>
+<br>
+
+#### <a href="#20" id="20">20. 介绍 js 的基本数据类型</a>
+
+js 一共有 七种数据类型
+
+1. undefined
+2. null
+3. boolean
+4. number
+5. string
+6. Symbol（ES6 新增）
+7. BigInt（尚在提案）
+
+<br>
+<br>
+
+#### <a href="#21" id="21">21. JS 中获取原型的方法</a>
+
+- `obj.__proto__`
+- `obj.constructor.prototype`
+- `Object.getPrototypeOf(obj)`
+
+<br>
+<br>
+
+#### <a href="#22" id="22">22. 如何判断一个对象是否属于某个类？</a>
+
+1. 使用 `instanceOf` 运算符来判断构造函数的 `prototype` 属性是否出现在对象的原型链中的任何位置
+
+2. 通过对象的 `constructor` 属性来判断，对象的 `constructor` 属性指向该对象的构造函数，但是这种方式并不安全，因为 `constructor` 属性可以被改写
+
+3. 如果需要判断的是某个内置的引用类型的话，可以使用 `Object.prototype.toString()` 方法来打印对象的 `[[Class]]` 属性来进行判断
+
+<br>
+<br>
+
+#### <a href="#23" id="23">23. 什么是堆？什么是栈？他们之间有什么区别和联系</a>
+
+堆和栈的概念存在于数据结构中和操作系统内存中。
+
+在数据结构中，栈中数据的存取当时是先进后出。而堆是一个优先队列，是按优先级来进行排序的，优先级可以按照大小来规定。完全二叉树是堆的一种实现方式。
+
+在操作系统中，内存被分为栈区和堆区。
+
+栈区内存由编译器自动分配释放，存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈。
+
+堆区内存一般有程序员分配释放，若程序员不释放，程序结束时可能由垃圾回收机制回收。
+
+<br>
+<br>
+
+#### <a href="#24" id="24">24. 介绍 instanceof 原理，并手动实现</a>
+
+`instanceof` 主要原理是**检测某个构造函数的原型对象在不在某个对象的原型链上**
+
+实现：
+
+```js
+function myInstanceof(left, right) {
+  let rightProto = right.prototype;
+  leftProto = left.__proto__;
+  // 或者
+  // leftProto = Object.getPrototypeOf(left)
+  while (true) {
+    if (leftProto === null) return false;
+
+    if (leftProto === rightProto) return true;
+
+    leftProto = leftProto.__proto__;
+  }
 }
 ```
