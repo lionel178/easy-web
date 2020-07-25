@@ -4,31 +4,27 @@
 
 ## 试题分类
 
-[html（0）](./question/html.md) | [css（3）](./question/css.md) | [js（24）](./question/js.md) | [react（0）](./question/react.md) | [工程化（0）](./question/engineering.md) | [网络（9）](./question/network.md)
+[html（0）](./question/html.md) | [css（6）](./question/css.md) | [js（26）](./question/js.md) | [react（0）](./question/react.md) | [工程化（0）](./question/engineering.md) | [网络（15）](./question/network.md)
 
-[浏览器（3）](./question/browser.md) | [性能优化（0）](./question/performance.md) | [安全（0）](./question/safe.md) | [typescript（0）](./question/typescript.md) | [算法（1）](./question/algorithm.md) | [其他（0）](./question/else.md)
+[浏览器（5）](./question/browser.md) | [性能优化（0）](./question/performance.md) | [安全（0）](./question/safe.md) | [typescript（0）](./question/typescript.md) | [算法（1）](./question/algorithm.md) | [其他（0）](./question/else.md)
 
-## 本周的知识点（2020.07.13 - 2020.07.17）
+## 本周的知识点（2020.07.20 - 2020.07.24）
 
-- [了解 ES6 的 let 和 const 变量声明吗？跟 ES5 的 var 有哪些区别？](./answer/js/js19.md#1)【js】
-- [介绍 js 的基本数据类型](./answer/js/js1.md#20)【js】
-- [JS 中获取原型的方法](./answer/js/js1.md#21)【js】
-- [如何判断一个对象是否属于某个类？](./answer/js/js1.md#22)【js】
-- [什么是堆？什么是栈？他们之间有什么区别和联系](./answer/js/js1.md#23)【js】
-- [display 有哪些值及其区别](./answer/css/css.md#1)【css】
-- [position 有哪些值及其区别](./answer/css/css.md#2)【css】
-- [px、em、rem 区别](./answer/css/css.md#3)【css】
-- [介绍一下 浏览器缓存](./answer/browser/browser.md#2)【浏览器】
-- [几种前端存储以及它们之间的区别](./answer/browser/browser.md#3)【浏览器】
-- [谈谈 HTTP 中 GET 与 POST 的区别](./answer/network/network.md#2)【网络】
-- [HTTP/1.0 和 HTTP/1.1 有什么区别](./answer/network/network.md#3)【网络】
-- [介绍一下 HTTP/2.0 新特性](./answer/network/network.md#4)【网络】
-- [说说 HTTP/2.0 多路复用的基本原理以及解决的问题](./answer/network/network.md#5)【网络】
-- [HTTP 和 HTTPS 有何区别](./answer/network/network.md#6)【网络】
-- [什么是 CSRF 攻击，与如何防范。](./answer/network/network.md#7)【网络】
-- [什么是 XSS 攻击，如何防御。](./answer/network/network.md#8)【网络】
-- [介绍 instanceof 原理，并手动实现](./answer/js/js1.md#24)【js】
-- [在项目中如何把 http 的请求换成 https](./answer/network/network.md#9)【网络】
+- [移动端适配 1px 的问题](./answer/css/css.md#4)【css】
+- [实现格式化输出，比如输入 999999999，输出 999,999,999](./answer/js/js1.md#24)【js】
+- [介绍一下你对浏览器内核的理解](./answer/browser/browser.md#4)【浏览器】
+- [从输入 URL 到页面加载全过程](./answer/browser/browser.md#5)【浏览器】
+- [说一下 css3 的 animation](./answer/css/css.md#5)【css】
+- [谈⼀谈箭头函数与普通函数的区别？](./answer/js/js1.md#25)【js】
+- [BFC 是什么？触发 BFC 的条件是什么？有哪些应用场景？](./answer/css/css.md#6)【css】
+- [DNS 解析的具体过程](./answer/network/network.md#10)【网络】
+- [React 中 setState 是同步的还是异步的](./answer/react/react.md#1)【react】
+- [说一下 TCP 三次握手过程](./answer/network/network.md#11)【网络】
+- [说一下 TCP 四次挥手过程](./answer/network/network.md#12)【网络】
+- [介绍一下对称加密和非对称加密](./answer/network/network.md#13)【网络】
+- [为什么 TCP 建立连接需要三次握手，而不是两次](./answer/network/network.md#14)【网络】
+- [https 的握手过程](./answer/network/network.md#15)【网络】
+- [React 组件通信如何实现。](./answer/react/react.md#2)【react】
 
 ## 写在最后
 
