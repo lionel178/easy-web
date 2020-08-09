@@ -17,3 +17,5 @@
 - [13. 介绍一下对称加密和非对称加密](../answer/network/network.md#13)
 - [14. 为什么 TCP 建立连接需要三次握手，而不是两次](../answer/network/network.md#14)
 - [15. https 的握手过程](../answer/network/network.md#15)
+- [16. CDN 是什么？描述下 CDN 原理？为什么要用 CDN?](../answer/network/network.md#16)【网络】
+- [17. 说一下正向代理和反向代理](../answer/network/network.md#17)【网络】

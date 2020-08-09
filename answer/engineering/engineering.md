@@ -20,6 +20,10 @@
 - [16. 文件指纹是什么？怎么用？](#16)
 - [17. 在实际工程中，配置文件上百行乃是常事，如何保证各个 loader 按照预想方式工作？](#17)
 - [18. 代码分割的本质是什么？有什么意义？你是如何拆分的？](#18)
+- [19. 是否写过 Loader？简单描述一下编写 loader 的思路？](#19)
+- [20. 是否写过 Plugin？简单描述一下编写 Plugin 的思路？](#20)
+- [21. 聊一聊 Babel 原理吧](#21)
+- [22. 在项目中，如何优化 Webpack](#22)
 
 ## 题解
 
@@ -464,3 +468,156 @@ webpack 配置中，通过 module.rules 中的 enforce 字段，将 loader 分�
 参考 / 来源：  
 [浅谈 webpack 优化之代码分割与公共代码提取详解](http://www.duanlonglong.com/qdjy/546.html)  
 [「吐血整理」再来一打 Webpack 面试题](https://juejin.im/post/5e6f4b4e6fb9a07cd443d4a5)
+
+<br/>
+<br/>
+
+#### <a href="#19" id="19">19. 是否写过 Loader？简单描述一下编写 loader 的思路？</a>
+
+所谓 loader 只是一个导出为函数的 JavaScript 模块。 webpack 中的 `loader runner` 会调用这个函数，然后把上一个 loader 产生的结果或者资源文件(resource file)传入进去。函数的 this 上下文将由 webpack 填充，并且 webpack 的 `loader runner` 具有一些有用方法，可以使 loader 改变为异步调用方式，或者获取 query 参数。
+
+编写 Loader 时要遵循单一 z 职责，每个 Loader 只做一种"转义"工作。 每个 Loader 的拿到的是源文件内容（source），可以通过返回值的方式将处理后的内容输出，也可以调用 this.callback()方法，将内容返回给 webpack。 还可以通过 this.async()生成一个 callback 函数，再用这个 callback 将处理后的内容输出出去。 此外 webpack 还为开发者准备了开发 loader 的工具函数集——loader-utils。
+
+- Loader 运行在 Node.js 中，我们可以调用任意 Node.js 自带的 API 或者安装第三方模块进行调用
+- Webpack 传给 Loader 的源内容默认都是 UTF-8 格式编码的字符串，当某些场景下 Loader 处理二进制文件时，需要通过 exports.raw = true 告诉 Webpack 该 Loader 是否需要二进制数据
+- 尽可能的异步化 Loader，如果计算量很小，同步也可以
+- Loader 是无状态的，我们不应该在 Loader 中保留状态
+- 使用 loader-utils 和 schema-utils 为我们提供的实用工具
+- 加载本地 Loader 方法
+  - Npm link
+  - ResolveLoader
+
+参考 / 来源：
+
+[官网](https://www.webpackjs.com/api/loaders/)  
+[关于 webpack 的面试题](https://www.cnblogs.com/gaoht/p/11310365.html)  
+[「吐血整理」再来一打 Webpack 面试题](https://juejin.im/post/5e6f4b4e6fb9a07cd443d4a5)
+
+<br/>
+<br/>
+
+#### <a href="#20" id="20">20. 是否写过 Plugin？简单描述一下编写 Plugin 的思路？</a>
+
+webpack 在运行的生命周期中会广播出许多事件，Plugin 可以监听这些事件，在合适的时机通过 webpack 提供的 API 改变输出结果。
+
+- compiler 暴露了和 Webpack 整个生命周期相关的钩子
+- compilation 暴露了与模块和依赖有关的粒度更小的事件钩子
+- 插件需要在其原型上绑定 apply 方法，才能访问 compiler 实例传给每个插件的 compiler 和 compilation 对象都是同一个引用，若在一个插件中修改了它们身上的属性，会影响后面的插件
+- 找出合适的事件点去完成想要的功能
+  - emit 事件发生时，可以读取到最终输出的资源、代码块、模块及其依赖，并进行修改(emit 事件是修改 Webpack 输出资源的最后时机)
+  - watch-run 当依赖的文件发生变化时会触发
+- 异步的事件需要在插件处理完任务时调用回调函数通知 Webpack 进入下一个流程，不然会卡住
+
+[官网](https://www.webpackjs.com/api/plugins/)  
+[「吐血整理」再来一打 Webpack 面试题](https://juejin.im/post/5e6f4b4e6fb9a07cd443d4a5)
+
+<br/>
+<br/>
+
+#### <a href="#21" id="21">21. 聊一聊 Babel 原理吧</a>
+
+大多数 JavaScript Parser 遵循 `estree` 规范，Babel 最初基于 `acorn` 项目(轻量级现代 JavaScript 解析器)
+Babel 大概分为三大部分：
+
+- 解析：将代码（其实就是字符串）转换成 AST
+
+- 转换：访问 AST 的节点进行变换操作生产新的 AST
+
+- 生成：以新的 AST 为基础生成代码
+
+详细一点：  
+ ES6、7 代码输⼊ -> babylon 进⾏解析 -> 得到 AST （抽象语法树）->
+plugin ⽤ babel-traverse 对 AST 树进⾏遍历转译 -> 得到新的 AST 树 -> ⽤ babel-generator 通过 AST 树⽣成 ES5 代码
+
+[面试官: 聊一聊 Babel](https://www.cnblogs.com/duxinyi/p/11576583.html)  
+[「吐血整理」再来一打 Webpack 面试题](https://juejin.im/post/5e6f4b4e6fb9a07cd443d4a5)
+
+<br/>
+<br/>
+
+#### <a href="#22" id="22">22. 在项目中，如何优化 Webpack</a>
+
+**优化开发体验**
+
+##### 优化构建速度
+
+首先说下衡量手段：`speed-measure-webpack-plugin`，监控构建过程中，loader 和 plugin 的执行时长
+
+1. 使用 `高版本` 的 webpack 和 node.js
+2. 缩小文件搜索范围
+
+   - 配置 loader 时，通过 `include` 和 `exclude` 缩小命中范围
+   - 优化 `resolve.modules` 配置，指明存放第三方模块的绝对路径，减少寻找时间。
+   - 优化 `resolve.mainFields` 配置： 只采用 main 字段作为入口文件描述字段 (减少搜索步骤，需要考虑到所有运行时依赖的第三方模块的入口文件描述字段)
+   - 优化 `resolve.alias` 配置
+   - 优化 `resolve.extensions` 配置
+   - 优化 `module.noParse` 配置： 对完全不需要解析的库进行忽略 (不去解析但仍会打包到 bundle 中，注意被忽略掉的文件里不应该包含 import、require、define 等模块化语句)
+
+3. 使用 `DLLPlugin`
+   - 使用 DllPlugin 进行分包，使用 DllReferencePlugin(索引链接) 对 manifest.json 引用，让一些基本不会改动的代码先打包成静态资源，避免反复编译浪费时间。
+   - HashedModuleIdsPlugin 可以解决模块数字 id 问题
+4. 使用 HappyPack（不维护了）、`thread-loader`
+5. 使用 `ParallelUglifyPlugin`
+6. `充分利用缓存提升二次构建速度`
+   - babel-loader 开启缓存
+   - terser-webpack-plugin 开启缓存
+   - 使用 cache-loader 或者 hard-source-webpack-plugin
+
+##### 优化使用体验
+
+1. 开启自动刷新
+2. 开启模块热替换（HMR）
+3. 展示构建进度：`progress-bar-webpack-plugin`
+4. 优化 webpack 原始的构建输出：`webpack-dashboard`
+
+**优化输出质量**
+
+##### 减少用户能感知到的加载时机，也就是首屏加载速度
+
+1. 区分环境，不同环境使用的配置不相同
+2. 压缩代码:
+
+   - 多进程并行压缩
+
+     - webpack-paralle-uglify-plugin
+     - uglifyjs-webpack-plugin 开启 parallel 参数 (不支持 ES6)
+     - `terser-webpack-plugin` 开启 parallel 参数
+
+   - 通过 mini-css-extract-plugin 提取 Chunk 中的 CSS 代码到单独文件，通过 css-loader 的 minimize 选项开启 cssnano 压缩 CSS。
+
+3. Tree Shaking：删除没用到的代码
+
+
+    - 打包过程中检测工程中没有引用过的模块并进行标记，在资源压缩时将它们从最终的 bundle 中去掉(只能对 ES6 Modlue 生效) 开发中尽可能使用 ES6 Module 的模块，提高 tree shaking 效率
+    - 禁用 babel-loader 的模块依赖解析，否则 Webpack 接收到的就都是转换过的 CommonJS 形式的模块，无法进行 tree-shaking
+    - 使用 PurifyCSS(不在维护) 或者 uncss 去除无用 CSS 代码
+
+      - purgecss-webpack-plugin 和 mini-css-extract-plugin 配合使用(建议)
+
+4. 提取公共代码
+
+   - 基础包分离：
+
+     - 使用 html-webpack-externals-plugin，将基础包通过 CDN 引入，不打入 bundle 中
+     - 使用 SplitChunksPlugin 进行(公共脚本、基础包、页面公共文件)分离(Webpack4 内置) ，替代了 CommonsChunkPlugin 插件
+
+5. 按需加载
+
+##### 提升流畅度，也就是提升代码性能
+
+1. prepack
+2. Scope Hoisting
+
+   - 构建后的代码会存在大量闭包，造成体积增大，运行代码时创建的函数作用域变多，内存开销变大。Scope hoisting 将所有模块的代码按照引用顺序放在一个函数作用域里，然后适当的重命名一些变量以防止变量名冲突
+   - 必须是 ES6 的语法，因为有很多第三方库仍采用 CommonJS 语法，为了充分发挥 Scope hoisting 的作用，需要配置 mainFields 对第三方模块优先采用 jsnext:main 中指向的 ES6 模块化语法
+
+3. 图片压缩： imagemin、image-webpack-loader
+
+参考 / 来源：  
+[官网](https://www.webpackjs.com/guides/build-performance/)
+[Webpack 优化](https://www.jianshu.com/p/4f58b179c626)  
+[「吐血整理」再来一打 Webpack 面试题](https://juejin.im/post/5e6f4b4e6fb9a07cd443d4a5)  
+[Webpack 优化——将你的构建效率提速翻倍](https://juejin.im/post/5d614dc96fb9a06ae3726b3e)
+
+<br/>
+<br/>
