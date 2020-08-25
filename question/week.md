@@ -1,5 +1,26 @@
 ## 每周汇总
 
+
+## 2020.08.10 - 2020.08.14 (第六周)
+
+- [说一下前端优化吧](../answer/performance/performance.md#1)【性能优化】
+- [什么是 JSX](../answer/react/react.md#10)【react】
+- [React 中 fiber 是什么](../answer/react/react.md#11)【react】
+- [state 和 props 的区别是啥](../answer/react/react.md#12)【react】
+- [什么是高阶组件](../answer/react/react.md#13)【react】
+- [受控组件 && 非受控组件](../answer/react/react.md#14)【react】
+- [在构造函数调用 super 并将 props 作为参数传入的作用是啥](../answer/react/react.md#15)【react】
+- [React 和原生事件的执行顺序是什么？可以混用吗？](../answer/react/react.md#16)【react】
+- [react 中的方法使用 bind 和箭头函数的区别](../answer/react/react.md#17)【react】
+- [为何 react 事件要自己绑定 this](../answer/react/react.md#18)【react】
+- [setState 更新是同步的还是异步的](../answer/react/react.md#19)【react】
+- [什么是 prop drilling？如何避免？](../answer/react/react.md#20)【react】
+- [描述 Flux 与 MVC](../answer/react/react.md#21)【react】
+- [说一下 Redux 的原理，介绍下整体的一个工作流程](../answer/react/react.md#22)【react】
+- [说一下 redux 的设计思想（理念、原则）](../answer/react/react.md#23)【react】
+- [说一下 redux 有哪些优缺点？](../answer/react/react.md#24)【react】
+
+
 ## 2020.08.03 - 2020.08.07 (第五周)
 
 - [是否写过 Loader？简单描述一下编写 loader 的思路？](../answer/engineering/engineering.md#19)【工程化 - webpack】

@@ -4,26 +4,28 @@
 
 ## 试题分类
 
-[html（0）](./question/html.md) | [css（6）](./question/css.md) | [js（27）](./question/js.md) | [react（9）](./question/react.md) | [工程化（22）](./question/engineering.md) | [网络（17）](./question/network.md)
+[html（0）](./question/html.md) | [css（6）](./question/css.md) | [js（27）](./question/js.md) | [react（24）](./question/react.md) | [工程化（22）](./question/engineering.md) | [网络（17）](./question/network.md)
 
-[浏览器（5）](./question/browser.md) | [性能优化（0）](./question/performance.md) | [安全（0）](./question/safe.md) | [typescript（0）](./question/typescript.md) | [算法（1）](./question/algorithm.md) | [其他（0）](./question/else.md)
+[浏览器（5）](./question/browser.md) | [性能优化（1）](./question/performance.md) | [安全（0）](./question/safe.md) | [typescript（0）](./question/typescript.md) | [算法（1）](./question/algorithm.md) | [其他（0）](./question/else.md)
 
-## 本周的知识点（2020.08.03 - 2020.08.07）
+## 本周的知识点（2020.08.10 - 2020.08.14）
 
-- [是否写过 Loader？简单描述一下编写 loader 的思路？](./answer/engineering/engineering.md#19)【工程化 - webpack】
-- [是否写过 Plugin？简单描述一下编写 Plugin 的思路？](./answer/engineering/engineering.md#20)【工程化 - webpack】
-- [聊一聊 Babel 原理吧](./answer/engineering/engineering.md#21)【工程化 - webpack】
-- [在项目中，如何优化 Webpack](./answer/engineering/engineering.md#22)【工程化 - webpack】
-- [CDN 是什么？描述下 CDN 原理？为什么要用 CDN?](./answer/network/network.md#16)【网络】
-- [说一下正向代理和反向代理](./answer/network/network.md#17)【网络】
-- [说一下事件模型、事件流和事件代理](./answer/js/js1.md#26)【js】
-- [「react」React 中函数组件和普通组件有什么区别](./answer/react/react.md#3)【react】
-- [「react」说一下 React 生命周期，以及新版本中都有哪些改变，为什么去掉了那几个旧的生命周期](./answer/react/react.md#4)【react】
-- [「react」知道 Portal 吗，有哪些使用场景？](./answer/react/react.md#5)【react】
-- [「react」 React 中 StrictMode (严格模式) 是什么？](./answer/react/react.md#6)【react】
-- [「react」什么是纯函数 && 什么是纯组件](./answer/react/react.md#7)【react】
-- [「react」请求接口放在哪个生命周期](./answer/react/react.md#8)【react】
-- [「react」React 事件合成机制是什么？为什么要合成？](./answer/react/react.md#9)【react】
+- [说一下前端优化吧](./answer/performance/performance.md#1)【性能优化】
+- [什么是 JSX](./answer/react/react.md#10)【react】
+- [React 中 fiber 是什么](./answer/react/react.md#11)【react】
+- [state 和 props 的区别是啥](./answer/react/react.md#12)【react】
+- [什么是高阶组件](./answer/react/react.md#13)【react】
+- [受控组件 && 非受控组件](./answer/react/react.md#14)【react】
+- [在构造函数调用 super 并将 props 作为参数传入的作用是啥](./answer/react/react.md#15)【react】
+- [React 和原生事件的执行顺序是什么？可以混用吗？](./answer/react/react.md#16)【react】
+- [react 中的方法使用 bind 和箭头函数的区别](./answer/react/react.md#17)【react】
+- [为何 react 事件要自己绑定 this](./answer/react/react.md#18)【react】
+- [setState 更新是同步的还是异步的](./answer/react/react.md#19)【react】
+- [什么是 prop drilling？如何避免？](./answer/react/react.md#20)【react】
+- [描述 Flux 与 MVC](./answer/react/react.md#21)【react】
+- [说一下 Redux 的原理，介绍下整体的一个工作流程](./answer/react/react.md#22)【react】
+- [说一下 redux 的设计思想（理念、原则）](./answer/react/react.md#23)【react】
+- [说一下 redux 有哪些优缺点？](./answer/react/react.md#24)【react】
 
 ## 写在最后
 
